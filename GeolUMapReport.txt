@@ -1,0 +1,412 @@
+<?xml version="1.0" encoding="UTF-8"?><SASReport xmlns="http://www.sas.com/sasreportmodel/bird-4.1.4" label="GeoLUMAP" createdLocale="en" createdVersion="4.1.4" dateCreated="2020-06-18T18:00:41Z" dateModified="2020-06-18T17:59:06Z" createdApplication="SAS Visual Analytics 7.5" lastModifiedApplication="SAS Visual Analytics 7.5" nextUniqueNameIndex="138">
+    <DataDefinitions>
+        <DataDefinition dataSource="ds29" type="mapprovider" name="dd27"/>
+        <ParentDataDefinition childQueryRelationship="independent" status="executable" dataSource="ds7" name="dd23">
+            <BusinessItems>
+                <RelationalDataItem includeAssociatedColumns="true" name="bi30" base="bi9"/>
+                <LookupDataItem property="polygonId" lookup="bi9" name="bi47"/>
+                <LookupDataItem property="mapId" lookup="bi9" name="bi48"/>
+                <RelationalDataItem name="bi88" base="bi11"/>
+                <RelationalDataItem name="bi89" base="bi10"/>
+                <RelationalDataItem name="bi90" base="bi12"/>
+            </BusinessItems>
+            <DataDefinition dataSource="ds7" type="multidimensional" name="dd24">
+                <MultidimensionalQuery detail="false">
+                    <Axes>
+                        <Axis type="column">
+                            <BusinessItem ref="bi30"/>
+                            <BusinessItem ref="bi47"/>
+                            <BusinessItem ref="bi48"/>
+                            <BusinessItem ref="bi89"/>
+                        </Axis>
+                        <Axis type="row">
+                            <BusinessItem ref="bi88"/>
+                            <BusinessItem ref="bi90"/>
+                        </Axis>
+                    </Axes>
+                    <RowSortItems>
+                        <MeasureSortItem ref="bi88" sortDirection="ascending"/>
+                    </RowSortItems>
+                </MultidimensionalQuery>
+                <ResultDefinitions>
+                    <ResultDefinition purpose="primary" maxRowsLookup="geoRegion" maxRowsBehavior="truncate" name="dd25"/>
+                </ResultDefinitions>
+            </DataDefinition>
+        </ParentDataDefinition>
+        <DataDefinition dataSource="ds106" type="mapprovider" name="dd104"/>
+        <ParentDataDefinition childQueryRelationship="independent" status="executable" dataSource="ds91" name="dd100">
+            <BusinessItems>
+                <RelationalDataItem includeAssociatedColumns="true" name="bi107" base="bi93"/>
+                <RelationalDataItem name="bi110" base="bi96"/>
+                <LookupDataItem property="polygonId" lookup="bi93" name="bi112"/>
+                <LookupDataItem property="mapId" lookup="bi93" name="bi113"/>
+            </BusinessItems>
+            <DataDefinition dataSource="ds91" type="multidimensional" name="dd101">
+                <MultidimensionalQuery detail="false">
+                    <Axes>
+                        <Axis type="column">
+                            <BusinessItem ref="bi107"/>
+                            <BusinessItem ref="bi112"/>
+                            <BusinessItem ref="bi113"/>
+                        </Axis>
+                        <Axis type="row">
+                            <BusinessItem ref="bi110"/>
+                        </Axis>
+                    </Axes>
+                    <RowSortItems>
+                        <MeasureSortItem ref="bi110" sortDirection="ascending"/>
+                    </RowSortItems>
+                </MultidimensionalQuery>
+                <ResultDefinitions>
+                    <ResultDefinition purpose="primary" maxRowsLookup="geoRegion" maxRowsBehavior="truncate" name="dd102"/>
+                </ResultDefinitions>
+            </DataDefinition>
+        </ParentDataDefinition>
+        <DataDefinition dataSource="ds130" type="mapprovider" name="dd128"/>
+        <ParentDataDefinition childQueryRelationship="independent" status="executable" dataSource="ds115" name="dd124">
+            <BusinessItems>
+                <RelationalDataItem includeAssociatedColumns="true" name="bi131" base="bi117"/>
+                <RelationalDataItem name="bi134" base="bi120"/>
+                <LookupDataItem property="polygonId" lookup="bi117" name="bi136"/>
+                <LookupDataItem property="mapId" lookup="bi117" name="bi137"/>
+            </BusinessItems>
+            <DataDefinition dataSource="ds115" type="multidimensional" name="dd125">
+                <MultidimensionalQuery detail="false">
+                    <Axes>
+                        <Axis type="column">
+                            <BusinessItem ref="bi131"/>
+                            <BusinessItem ref="bi136"/>
+                            <BusinessItem ref="bi137"/>
+                        </Axis>
+                        <Axis type="row">
+                            <BusinessItem ref="bi134"/>
+                        </Axis>
+                    </Axes>
+                    <RowSortItems>
+                        <MeasureSortItem ref="bi134" sortDirection="ascending"/>
+                    </RowSortItems>
+                </MultidimensionalQuery>
+                <ResultDefinitions>
+                    <ResultDefinition purpose="primary" maxRowsLookup="geoRegion" maxRowsBehavior="truncate" name="dd126"/>
+                </ResultDefinitions>
+            </DataDefinition>
+        </ParentDataDefinition>
+    </DataDefinitions>
+    <DataSources>
+        <DataSource label="CUSTOM_MUNLU1_POPAREA" type="relational" name="ds7">
+            <InMemoryResource resourceName="SBIP://METASERVER/Shared Data/SAS Visual Analytics/Autoload/VALIBLA/CUSTOM_MUNLU1_POPAREA(Table)" label="HPS.CUSTOM_MUNLU1_POPAREA"/>
+            <BusinessItemFolder>
+                <DataItem name="bi8" xref="DEGURBA"/>
+                <DataItem name="bi9" xref="ID" usage="categorical">
+                    <GeoInfo geoType="external" coordinateSpace="WGS84">
+                        <Lookup property="longitude" externalSource="sasid.region"/>
+                        <Lookup property="latitude" externalSource="sasid.region"/>
+                        <Lookup property="polygonId" externalSource="sasid.region"/>
+                        <Lookup property="mapId" externalSource="sasid.region"/>
+                    </GeoInfo>
+                </DataItem>
+                <DataItem name="bi10" xref="NAME"/>
+                <DataItem name="bi11" xref="POPULATION"/>
+                <DataItem name="bi12" xref="TOTAL_AREA__m2_"/>
+                <PredefinedDataItem calculation="totalCount" name="bi13" label="Frequency" usage="quantitative" format="COMMA12."/>
+                <PredefinedDataItem calculation="totalCountPercent" name="bi14" label="Frequency Percent" usage="quantitative" format="PERCENT20.2"/>
+            </BusinessItemFolder>
+        </DataSource>
+        <DataSource label="OpenStreetMapProvider" type="mapprovider" name="ds29">
+            <OpenStreetMapProvider osmType="SASMAPNIK_LITE"/>
+        </DataSource>
+        <DataSource label="CUSTOM_CANTLU1_TEST" type="relational" name="ds91">
+            <InMemoryResource resourceName="SBIP://METASERVER/Shared Data/SAS Visual Analytics/Autoload/VALIBLA/CUSTOM_CANTLU1_TEST(Table)" label="HPS.CUSTOM_CANTLU1_TEST"/>
+            <BusinessItemFolder>
+                <DataItem name="bi92" xref="avg_income"/>
+                <DataItem name="bi93" xref="ID" usage="categorical">
+                    <GeoInfo geoType="external" coordinateSpace="WGS84">
+                        <Lookup property="longitude" externalSource="sasid.region"/>
+                        <Lookup property="latitude" externalSource="sasid.region"/>
+                        <Lookup property="polygonId" externalSource="sasid.region"/>
+                        <Lookup property="mapId" externalSource="sasid.region"/>
+                    </GeoInfo>
+                </DataItem>
+                <DataItem name="bi94" xref="NAME"/>
+                <DataItem name="bi95" xref="population"/>
+                <PredefinedDataItem calculation="totalCount" name="bi96" label="Frequency" usage="quantitative" format="COMMA12."/>
+                <PredefinedDataItem calculation="totalCountPercent" name="bi97" label="Frequency Percent" usage="quantitative" format="PERCENT20.2"/>
+            </BusinessItemFolder>
+        </DataSource>
+        <DataSource label="OpenStreetMapProvider" type="mapprovider" name="ds106">
+            <OpenStreetMapProvider osmType="SASMAPNIK_LITE"/>
+        </DataSource>
+        <DataSource label="CUSTOM_DISTRLU1_TEST" type="relational" name="ds115">
+            <InMemoryResource resourceName="SBIP://METASERVER/Shared Data/SAS Visual Analytics/Autoload/VALIBLA/CUSTOM_DISTRLU1_TEST(Table)" label="HPS.CUSTOM_DISTRLU1_TEST"/>
+            <BusinessItemFolder>
+                <DataItem name="bi116" xref="avg_income"/>
+                <DataItem name="bi117" xref="ID" usage="categorical">
+                    <GeoInfo geoType="external" coordinateSpace="WGS84">
+                        <Lookup property="longitude" externalSource="sasid.region"/>
+                        <Lookup property="latitude" externalSource="sasid.region"/>
+                        <Lookup property="polygonId" externalSource="sasid.region"/>
+                        <Lookup property="mapId" externalSource="sasid.region"/>
+                    </GeoInfo>
+                </DataItem>
+                <DataItem name="bi118" xref="NAME"/>
+                <DataItem name="bi119" xref="population"/>
+                <PredefinedDataItem calculation="totalCount" name="bi120" label="Frequency" usage="quantitative" format="COMMA12."/>
+                <PredefinedDataItem calculation="totalCountPercent" name="bi121" label="Frequency Percent" usage="quantitative" format="PERCENT20.2"/>
+            </BusinessItemFolder>
+        </DataSource>
+        <DataSource label="OpenStreetMapProvider" type="mapprovider" name="ds130">
+            <OpenStreetMapProvider osmType="SASMAPNIK_LITE"/>
+        </DataSource>
+    </DataSources>
+    <VisualElements>
+        <Graph graphType="geo" graphSubType="geoRegion" supplementalVisuals="ve34" mapData="dd27" resultDefinitions="dd25" name="ve22" data="dd23" label="Geo Map 1" applyDynamicBrushes="yes" sourceInteractionVariables="bi30">
+            <Title auto="true"><P><DynamicSpan key="bird.autotitle.template.oneByTwo.fmt.txt"><Substitutions><Substitution valueType="label" variables="bi11"/><Substitution valueType="label" variables="bi9"/></Substitutions></DynamicSpan></P></Title>
+<![CDATA[<StatGraph opaque="false" includeMissingDiscrete="true" missingValueDisplay="autolabel">
+    <PadAttrs top="0px" bottom="0px" left="0px" right="0px"/>
+    <Meta>
+        <DataNameMap>
+            <Entry model="LayoutOverlayMap" data="dd25"/>
+        </DataNameMap>
+    </Meta>
+    <LayoutOverlayMap name="LayoutOverlayMap">
+        <MapLayer name="MapLayer"/>
+        <MapRegionLayer name="MapRegionLayer" dataTransparency="0.129999995" includeMissingColor="true" auxiliary="Role1 Role1" tip="Role1 colorResponse Role2 Role3" identification="dd25#bi47" colorResponse="dd25#bi88" colorResponseAttrVar="attrVar0" dataSetName="dd25#bi48">
+            <Roles>
+                <Role name="Role1" type="variable">dd25#bi30</Role>
+                <Role name="Role2" type="variable">dd25#bi89</Role>
+                <Role name="Role3" type="variable">dd25#bi90</Role>
+            </Roles>
+        </MapRegionLayer>
+    </LayoutOverlayMap>
+    <LayoutGlobalLegend border="false" legendTitlePosition="top" allowCollapsed="true">
+        <ContinuousLegend border="false" opaque="false" vAlign="bottom" valueStyle="inflections" displayMissing="automatic" extractScale="true" type="fillcolor" title_type="KEYWORD" title="AUTO">
+            <PadAttrs top="2px" bottom="2px" left="2px" right="2px"/>
+            <GraphNames>
+                <Value>MapRegionLayer</Value>
+            </GraphNames>
+        </ContinuousLegend>
+        <AutoLegend opaque="false" sortOrder="ascending">
+            <GraphNames>
+                <Value>MapRegionLayer</Value>
+            </GraphNames>
+        </AutoLegend>
+    </LayoutGlobalLegend>
+    <Animation keyframesPerSecond="1" playDirectionForward="true" repeatEnabled="false"/>
+    <RangeAttrMap name="attrMap0">
+        <AttrRange minValue="min" minExclude="false" maxValue="max" maxExclude="false" rangeColorModel="TwoColorRamp"/>
+    </RangeAttrMap>
+    <RangeAttrVar attrVar="attrVar0" attrMap="attrMap0"/>
+</StatGraph>
+]]>
+        </Graph>
+        <Table columnSizing="autoFill" resultDefinitions="dd25" name="ve34" data="dd23" applyDynamicBrushes="yes" sourceInteractionVariables="bi30 bi89">
+            <Columns>
+                <Column variable="bi30"/>
+                <Column variable="bi88"/>
+                <Column variable="bi89"/>
+                <Column variable="bi90"/>
+            </Columns>
+        </Table>
+        <Graph graphType="geo" graphSubType="geoRegion" supplementalVisuals="ve111" mapData="dd104" resultDefinitions="dd102" name="ve99" data="dd100" label="Geo Map 2" applyDynamicBrushes="yes" sourceInteractionVariables="bi107">
+            <EditorProperties>
+                <Property key="autoFrequencyQueryDataItemName">bi110</Property>
+            </EditorProperties>
+            <Title auto="true"><P><DynamicSpan key="bird.autotitle.template.oneOfTwo.fmt.txt"><Substitutions><Substitution valueType="label" variables="bi96"/><Substitution valueType="label" variables="bi93"/></Substitutions></DynamicSpan></P></Title>
+<![CDATA[<StatGraph opaque="false" includeMissingDiscrete="true" missingValueDisplay="autolabel">
+    <PadAttrs top="0px" bottom="0px" left="0px" right="0px"/>
+    <Meta>
+        <DataNameMap>
+            <Entry model="LayoutOverlayMap_8" data="dd102"/>
+        </DataNameMap>
+    </Meta>
+    <LayoutOverlayMap name="LayoutOverlayMap_8">
+        <MapLayer name="MapLayer_8"/>
+        <MapRegionLayer name="MapRegionLayer_7" dataTransparency="0.129999995" includeMissingColor="true" auxiliary="Role1 Role1" tip="Role1 colorResponse" identification="dd102#bi112" colorResponse="dd102#bi110" colorResponseAttrVar="attrVar0" dataSetName="dd102#bi113">
+            <Roles>
+                <Role name="Role1" type="variable">dd102#bi107</Role>
+            </Roles>
+        </MapRegionLayer>
+    </LayoutOverlayMap>
+    <LayoutGlobalLegend border="false" legendTitlePosition="top" allowCollapsed="true">
+        <ContinuousLegend border="false" opaque="false" vAlign="bottom" valueStyle="inflections" displayMissing="automatic" extractScale="true" type="fillcolor" title_type="KEYWORD" title="AUTO">
+            <PadAttrs top="2px" bottom="2px" left="2px" right="2px"/>
+            <GraphNames>
+                <Value>MapRegionLayer_7</Value>
+            </GraphNames>
+        </ContinuousLegend>
+        <AutoLegend opaque="false" sortOrder="ascending">
+            <GraphNames>
+                <Value>MapRegionLayer_7</Value>
+            </GraphNames>
+        </AutoLegend>
+    </LayoutGlobalLegend>
+    <Animation keyframesPerSecond="1" playDirectionForward="true" repeatEnabled="false"/>
+    <RangeAttrMap name="attrMap0">
+        <AttrRange minValue="min" minExclude="false" maxValue="max" maxExclude="false" rangeColorModel="TwoColorRamp"/>
+    </RangeAttrMap>
+    <RangeAttrVar attrVar="attrVar0" attrMap="attrMap0"/>
+</StatGraph>
+]]>
+        </Graph>
+        <Table columnSizing="autoFill" resultDefinitions="dd102" name="ve111" data="dd100" applyDynamicBrushes="yes" sourceInteractionVariables="bi107">
+            <Columns>
+                <Column variable="bi107"/>
+                <Column variable="bi110"/>
+            </Columns>
+        </Table>
+        <Graph graphType="geo" graphSubType="geoRegion" supplementalVisuals="ve135" mapData="dd128" resultDefinitions="dd126" name="ve123" data="dd124" label="Geo Map 3" applyDynamicBrushes="yes" sourceInteractionVariables="bi131">
+            <EditorProperties>
+                <Property key="autoFrequencyQueryDataItemName">bi134</Property>
+            </EditorProperties>
+            <Title auto="true"><P><DynamicSpan key="bird.autotitle.template.oneOfTwo.fmt.txt"><Substitutions><Substitution valueType="label" variables="bi120"/><Substitution valueType="label" variables="bi117"/></Substitutions></DynamicSpan></P></Title>
+<![CDATA[<StatGraph opaque="false" includeMissingDiscrete="true" missingValueDisplay="autolabel">
+    <PadAttrs top="0px" bottom="0px" left="0px" right="0px"/>
+    <Meta>
+        <DataNameMap>
+            <Entry model="LayoutOverlayMap_10" data="dd126"/>
+        </DataNameMap>
+    </Meta>
+    <LayoutOverlayMap name="LayoutOverlayMap_10">
+        <MapLayer name="MapLayer_10"/>
+        <MapRegionLayer name="MapRegionLayer_8" dataTransparency="0.129999995" includeMissingColor="true" auxiliary="Role1 Role1" tip="Role1 colorResponse" identification="dd126#bi136" colorResponse="dd126#bi134" colorResponseAttrVar="attrVar0" dataSetName="dd126#bi137">
+            <Roles>
+                <Role name="Role1" type="variable">dd126#bi131</Role>
+            </Roles>
+        </MapRegionLayer>
+    </LayoutOverlayMap>
+    <LayoutGlobalLegend border="false" legendTitlePosition="top" allowCollapsed="true">
+        <ContinuousLegend border="false" opaque="false" vAlign="bottom" valueStyle="inflections" displayMissing="automatic" extractScale="true" type="fillcolor" title_type="KEYWORD" title="AUTO">
+            <PadAttrs top="2px" bottom="2px" left="2px" right="2px"/>
+            <GraphNames>
+                <Value>MapRegionLayer_8</Value>
+            </GraphNames>
+        </ContinuousLegend>
+        <AutoLegend opaque="false" sortOrder="ascending">
+            <GraphNames>
+                <Value>MapRegionLayer_8</Value>
+            </GraphNames>
+        </AutoLegend>
+    </LayoutGlobalLegend>
+    <Animation keyframesPerSecond="1" playDirectionForward="true" repeatEnabled="false"/>
+    <RangeAttrMap name="attrMap0">
+        <AttrRange minValue="min" minExclude="false" maxValue="max" maxExclude="false" rangeColorModel="TwoColorRamp"/>
+    </RangeAttrMap>
+    <RangeAttrVar attrVar="attrVar0" attrMap="attrMap0"/>
+</StatGraph>
+]]>
+        </Graph>
+        <Table columnSizing="autoFill" resultDefinitions="dd126" name="ve135" data="dd124" applyDynamicBrushes="yes" sourceInteractionVariables="bi131">
+            <Columns>
+                <Column variable="bi131"/>
+                <Column variable="bi134"/>
+            </Columns>
+        </Table>
+    </VisualElements>
+    <View>
+        <Section name="vi6" label="Commune">
+            <Body>
+                <MediaContainer target="mt2">
+                    <ResponsiveLayout orientation="vertical" overflow="fit">
+                        <Weights mediaTarget="mt5" unit="percent">
+                            <Weight value="100%"/>
+                        </Weights>
+                        <Weights mediaTarget="mt4" unit="percent">
+                            <Weight value="100%"/>
+                        </Weights>
+                        <Weights mediaTarget="mt3" unit="percent">
+                            <Weight value="100%"/>
+                        </Weights>
+                    </ResponsiveLayout>
+                    <Visual ref="ve22" name="vi21">
+                        <ResponsiveConstraint>
+                            <WidthConstraint>
+                                <Width mediaTarget="mt3" preferredSizeBehavior="ignore" flexibility="flexible"/>
+                            </WidthConstraint>
+                            <HeightConstraint>
+                                <Height mediaTarget="mt3" preferredSizeBehavior="ignore" flexibility="flexible"/>
+                            </HeightConstraint>
+                        </ResponsiveConstraint>
+                    </Visual>
+                </MediaContainer>
+            </Body>
+        </Section>
+        <Section name="vi35" label="Canton">
+            <Body>
+                <MediaContainer target="mt2">
+                    <ResponsiveLayout orientation="vertical" overflow="fit">
+                        <Weights mediaTarget="mt5" unit="percent">
+                            <Weight value="100%"/>
+                        </Weights>
+                        <Weights mediaTarget="mt4" unit="percent">
+                            <Weight value="100%"/>
+                        </Weights>
+                        <Weights mediaTarget="mt3" unit="percent">
+                            <Weight value="100%"/>
+                        </Weights>
+                    </ResponsiveLayout>
+                    <Visual ref="ve99" name="vi98">
+                        <ResponsiveConstraint>
+                            <WidthConstraint>
+                                <Width mediaTarget="mt3" preferredSizeBehavior="ignore" flexibility="flexible"/>
+                            </WidthConstraint>
+                            <HeightConstraint>
+                                <Height mediaTarget="mt3" preferredSizeBehavior="ignore" flexibility="flexible"/>
+                            </HeightConstraint>
+                        </ResponsiveConstraint>
+                    </Visual>
+                </MediaContainer>
+            </Body>
+        </Section>
+        <Section name="vi114" label="District">
+            <Body>
+                <MediaContainer target="mt2">
+                    <ResponsiveLayout orientation="vertical" overflow="fit">
+                        <Weights mediaTarget="mt5" unit="percent">
+                            <Weight value="100%"/>
+                        </Weights>
+                        <Weights mediaTarget="mt4" unit="percent">
+                            <Weight value="100%"/>
+                        </Weights>
+                        <Weights mediaTarget="mt3" unit="percent">
+                            <Weight value="100%"/>
+                        </Weights>
+                    </ResponsiveLayout>
+                    <Visual ref="ve123" name="vi122">
+                        <ResponsiveConstraint>
+                            <WidthConstraint>
+                                <Width mediaTarget="mt3" preferredSizeBehavior="ignore" flexibility="flexible"/>
+                            </WidthConstraint>
+                            <HeightConstraint>
+                                <Height mediaTarget="mt3" preferredSizeBehavior="ignore" flexibility="flexible"/>
+                            </HeightConstraint>
+                        </ResponsiveConstraint>
+                    </Visual>
+                </MediaContainer>
+            </Body>
+        </Section>
+    </View>
+    <MediaSchemes>
+        <MediaScheme name="ms1">
+            <BaseStylesheetResource theme="marine"/>
+            <Stylesheet><![CDATA[]]></Stylesheet>
+        </MediaScheme>
+    </MediaSchemes>
+    <MediaTargets>
+        <MediaTarget windowSize="default" scheme="ms1" name="mt2"/>
+        <MediaTarget windowSize="small" scheme="ms1" name="mt3"/>
+        <MediaTarget windowSize="medium" scheme="ms1" name="mt4"/>
+        <MediaTarget windowSize="large" scheme="ms1" name="mt5"/>
+    </MediaTargets>
+    <Properties>
+        <Property key="displayDataSource">ds7</Property>
+    </Properties>
+    <ExportProperties>
+        <Export destination="pdf">
+            <Property key="showCoverPage" value="true"/>
+            <Property key="showPageNumbers" value="true"/>
+        </Export>
+    </ExportProperties>
+    <SASReportState>
+        <View/>
+    </SASReportState>
+</SASReport>
